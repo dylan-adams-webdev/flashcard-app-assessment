@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import DeckList from '../Decks/DeckList';
+import DeckList from '../Home/DeckList';
 import Header from './Header';
 import NotFound from '../Common/NotFound';
 import Decks from '../Decks/Decks';

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import Cards from '../Cards/Cards';
+import NotFound from '../Common/NotFound';
 import CreateDeck from './CreateDeck';
 import EditDeck from './EditDeck';
 import Study from './Study';
@@ -25,7 +27,13 @@ export default function Decks() {
 				<EditDeck />
 			</Route>
 			
+			<Route path={`${path}/:deckId/cards`}>
+				<Cards />
+			</Route>
 			
+			<Route>
+				<NotFound />
+			</Route>
 		</Switch>
 	);
 }
