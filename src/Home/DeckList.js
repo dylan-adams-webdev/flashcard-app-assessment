@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LoadingSpinner from '../Common/LoadingSpinner';
+import NotEnoughCards from '../Decks/StudyComponents/NotEnoughCards';
 import { deleteDeck, listDecks } from '../utils/api/index';
 import AddDeckButton from './DeckListComponents/AddDeckButton';
 import DeckListItem from './DeckListComponents/DeckListItem';
 
 export default function DeckList() {
-	const [decks, setDecks] = useState([]);
-
-	const deckListItems = decks.map((deck) => (
-		<DeckListItem
-			key={deck.id}
-			deck={deck}
-			handleDeleteClick={() => handleDeleteDeck(deck.id)}
-		/>
-	));
-
+	const [decks, setDecks] = useState(null);
+	
 	useEffect(() => {
 		const abort = new AbortController();
 		listDecks(abort.signal).then(setDecks).catch(console.error);
@@ -33,12 +26,24 @@ export default function DeckList() {
 			setDecks([...newDeck]);
 		}
 	};
-
-	if (decks.length) return (
-		<>
-			<AddDeckButton />
-			{deckListItems}
-		</>
-	);
-	return <LoadingSpinner />
+	
+	if (decks === null) {
+		return <LoadingSpinner />;
+	} else if (!decks.length) {
+		return <NotEnoughCards />
+	} else {
+		const deckListItems = decks.map((deck) => (
+			<DeckListItem
+				key={deck.id}
+				deck={deck}
+				handleDeleteClick={() => handleDeleteDeck(deck.id)}
+			/>
+		));
+		return (
+			<>
+				<AddDeckButton />
+				{deckListItems}
+			</>
+		);
+	}
 }
