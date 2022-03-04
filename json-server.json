@@ -1,5 +1,6 @@
 {
-  "port": 8080,
-  "watch": true,
-  "static": "./docs/api"
+	"port": 3000,
+	"watch": true,
+	"static": "./docs/api",
+	"delay": 2000
 }

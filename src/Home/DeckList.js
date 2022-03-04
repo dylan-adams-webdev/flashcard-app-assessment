@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import { deleteDeck, listDecks } from '../utils/api/index';
 import AddDeckButton from './DeckListComponents/AddDeckButton';
 import DeckListItem from './DeckListComponents/DeckListItem';
@@ -33,10 +34,11 @@ export default function DeckList() {
 		}
 	};
 
-	return (
+	if (decks.length) return (
 		<>
 			<AddDeckButton />
 			{deckListItems}
 		</>
 	);
+	return <LoadingSpinner />
 }
