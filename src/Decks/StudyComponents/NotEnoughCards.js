@@ -8,8 +8,9 @@ export default function NotEnoughCards({ count }) {
 		<div>
 			<h2>Not enough cards.</h2>
 			<p>
-				You need at least 3 cards to study. There are only {count} cards
-				in this deck.
+				You need at least 3 cards to study. There are
+				{count > 0 ? `only ${count}` : 'no'}
+				cards in this deck.
 			</p>
 			<Link
 				to={`/decks/${params.deckId}/cards/new`}

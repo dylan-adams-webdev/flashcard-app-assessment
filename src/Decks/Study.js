@@ -3,6 +3,7 @@ import { useDecks } from '../Hooks/Hooks';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import { useParams } from 'react-router-dom';
 import NoDeck from '../Common/NoDeck';
+import Breadcrumbs from './StudyComponents/Breadcrumbs';
 
 export default function Study() {
 	const { isLoading, decks } = useDecks();
@@ -16,7 +17,9 @@ export default function Study() {
 	if (deck)
 		return (
 			<>
-				<Card content={decks} />
+				<Breadcrumbs deck={deck} />
+				<h1 className='mb-3'>Study: {deck.name}</h1>
+				<Card deck={deck} />
 			</>
 		);
 	return <NoDeck />;
