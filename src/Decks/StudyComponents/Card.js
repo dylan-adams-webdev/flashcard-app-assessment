@@ -1,4 +1,4 @@
-import NotEnoughCards from './NotEnoughCards';
+import NotEnoughCards from '../DeckErrors/NotEnoughCards';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import LoadingSpinner from '../../Common/LoadingSpinner';
