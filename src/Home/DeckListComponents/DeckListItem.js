@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { useDecks } from '../../Hooks/Hooks';
 
-export default function DeckListItem({ deck, handleDeleteClick }) {
+export default function DeckListItem({ deck, handleDelete }) {
 	return (
 		<div className='card mt-3'>
 			<div className='card-body'>
-				
 				{/* Card Title */}
 				<div className='d-flex'>
 					<h5 className='card-title'>{deck.name}</h5>
@@ -13,10 +13,10 @@ export default function DeckListItem({ deck, handleDeleteClick }) {
 						{`${deck.cards.length}`} cards
 					</p>
 				</div>
-					
+
 				{/* Card body */}
 				<p className='card-text'>{deck.description}</p>
-				
+
 				{/* Card Buttons */}
 				<div className='d-flex'>
 					<Link
@@ -35,7 +35,7 @@ export default function DeckListItem({ deck, handleDeleteClick }) {
 
 					<button
 						type='button'
-						onClick={handleDeleteClick}
+						onClick={handleDelete}
 						className='btn btn-danger ml-auto'
 					>
 						<i className='fa-solid fa-trash'></i>
