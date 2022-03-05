@@ -2,7 +2,7 @@ import Card from './StudyComponents/Card';
 import { useDecks } from '../Hooks/Hooks';
 import LoadingSpinner from '../Common/LoadingSpinner';
 import { useParams } from 'react-router-dom';
-import NoDeck from '../Common/NoDeck';
+import NoDeck from './DeckErrors/CannotFindDeck';
 import Breadcrumbs from './StudyComponents/Breadcrumbs';
 
 export default function Study() {
