@@ -49,7 +49,7 @@ export default function DeckForm({
 			<Link to={'/'} className='btn btn-secondary mr-2'>
 				Cancel
 			</Link>
-			<DynamicDeckFormButton isSubmitting={isSubmitting}/>
+			<DynamicDeckFormButton isSubmitting={isSubmitting} />
 		</form>
 	);
 }
