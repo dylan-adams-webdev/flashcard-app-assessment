@@ -9,7 +9,7 @@ export default function NotEnoughCards({ count }) {
 			<h2>Not enough cards.</h2>
 			<p>
 				You need at least 3 cards to study. There are
-				{count > 0 ? `only ${count}` : 'no'}
+				{count > 0 ? ` only ${count} ` : ' no '}
 				cards in this deck.
 			</p>
 			<Link
