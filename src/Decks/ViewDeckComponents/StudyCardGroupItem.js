@@ -1,17 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { deleteCard } from '../../utils/api/index';
 
-export default function CardGroupItem({ card, deleteHandler }) {
+export default function CardGroupItem({
+	card,
+	handleDeleteCard,
+}) {
 	return (
 		<div className='col mb-4'>
 			<div className='card p-2'>
 				<div className='card-body'>
 					<div className='d-flex'>
-						<p className='w-50 text-center'>{card.front}</p>
-						<p className='ml-auto w-50 text-center'>{card.back}</p>
+						{/* Front of card */}
+						<div className='w-50 text-center'>
+							<p>
+								<strong>Front</strong>
+							</p>
+							<hr />
+							<p>{card.front}</p>
+						</div>
+
+						{/* Back of card */}
+						<div className='w-50 text-center'>
+							<p>
+								<strong>Back</strong>
+							</p>
+							<hr />
+							<p>{card.back}</p>
+						</div>
 					</div>
 				</div>
+
+				{/* Buttons */}
 				<div className='d-flex'>
 					<Link
 						to={`/decks/${card.deckId}/cards/${card.id}/edit`}
@@ -22,7 +41,7 @@ export default function CardGroupItem({ card, deleteHandler }) {
 					<button
 						type='button'
 						className='btn btn-danger ml-2'
-						onClick={deleteHandler}
+						onClick={() => handleDeleteCard(card.id)}
 					>
 						<i className='fa-solid fa-trash'></i>
 					</button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import DynamicDeckFormButton from './DynamicDeckFormButton';
+import DynamicSubmitFormButton from '../../Common/DynamicSubmitFormButton';
 
 export default function DeckForm({
 	submitHandler,
@@ -49,7 +49,7 @@ export default function DeckForm({
 			<Link to={'/'} className='btn btn-secondary mr-2'>
 				Cancel
 			</Link>
-			<DynamicDeckFormButton isSubmitting={isSubmitting} />
+			<DynamicSubmitFormButton isSubmitting={isSubmitting} />
 		</form>
 	);
 }
