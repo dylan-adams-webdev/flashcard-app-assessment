@@ -6,7 +6,6 @@ import NewCard from './NewCard';
 
 export default function CardRoutes() {
 	const { path } = useRouteMatch();
-	console.log(path);
 	return (
 		<Switch>
 			<Route exact path={`${path}/new`}>
