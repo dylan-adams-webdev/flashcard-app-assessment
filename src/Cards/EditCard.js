@@ -8,17 +8,17 @@ import LoadingSpinner from '../Common/LoadingSpinner';
 import { updateCard } from '../utils/api/index';
 import { useHistory } from 'react-router-dom';
 
-export default function EditCard() {
-	const { decks, isLoading } = useDecks();
+export default function EditCard({deck}) {
 	const params = useParams();
 	const history = useHistory();
 
-	if (isLoading) return <LoadingSpinner />;
+	if (!deck) return <LoadingSpinner />;
 
-	if (!decks.length) return <CannotFindDeck />;
+	if (deck === {}) return <CannotFindDeck />;
 
-	const deck = decks.find((deck) => deck.id === Number(params.deckId));
 	const card = deck.cards.find((card) => card.id === Number(params.cardId));
+	
+	if (!card) return 'No Card';
 
 	const breadcrumbLinks = [
 		{ name: deck.name, address: `/decks/${deck.id}` },

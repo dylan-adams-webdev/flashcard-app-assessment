@@ -1,6 +1,5 @@
 import React from 'react';
 import StudyCardGroupItem from './StudyCardGroupItem';
-import NoCards from './NoCards';
 
 export default function StudyCardGroup({ cards, handleDeleteCard }) {
 	const cardElements = cards.map((card) => (

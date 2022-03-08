@@ -1,26 +1,25 @@
+import { useState, useEffect } from 'react';
 import Card from './StudyComponents/Card';
-import { useDecks } from '../Hooks/Hooks';
-import LoadingSpinner from '../Common/LoadingSpinner';
 import { useParams } from 'react-router-dom';
-import CannotFindDeck from '../Common/CannotFindDeck';
 import Breadcrumbs from '../Common/Breadcrumbs';
+import { readDeck } from '../utils/api';
 
 export default function Study() {
-	const { isLoading, decks } = useDecks();
 	const params = useParams();
+	const [deck, setDeck] = useState(null);
 
-	if (isLoading) {
-		return <LoadingSpinner />;
-	}
+	useEffect(() => {
+		const abort = new AbortController();
+		readDeck(params.deckId, abort.signal).then((res) => setDeck(res));
+		return () => abort.abort();
+	}, [params.deckId]);
 
-	if (!decks.length) return <CannotFindDeck />;
-
-	const deck = decks.find((deck) => deck.id === Number(params.deckId));
-
+		if (!deck) return '...loading';
 	const breadcrumbLinks = [
 		{ name: deck.name, address: `/decks/${deck.id}` },
 		{ name: 'Study' },
 	];
+
 
 	return (
 		<>
