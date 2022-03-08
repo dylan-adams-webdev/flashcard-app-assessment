@@ -3,10 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import DynamicDeckFormButton from '../../Common/DynamicSubmitFormButton';
 
 export default function CardForm(props) {
-	const {
-		initialState = { front: '', back: '' },
-		submitHandler
-	} = props;
+	const { initialState = { front: '', back: '' }, submitHandler } = props;
 
 	const [formData, setFormData] = useState({ ...initialState });
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,12 +12,12 @@ export default function CardForm(props) {
 	const changeHandler = ({ target }) => {
 		setFormData({ ...formData, [target.name]: target.value });
 	};
-	
-	// only to be used as callback for new card page onSubmit
+
+	// only to be used as callback for [new card page]: onSubmit
 	const resetForm = () => {
-		setFormData({front: '', back:''});
+		setFormData({ front: '', back: '' });
 		setIsSubmitting(false);
-	}
+	};
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -32,8 +29,7 @@ export default function CardForm(props) {
 		<form onSubmit={onSubmit}>
 			<div className='form-group'>
 				<label htmlFor='front'>Front</label>
-				<input
-					type='text'
+				<textarea
 					name='front'
 					className='form-control'
 					id='front'
@@ -59,9 +55,7 @@ export default function CardForm(props) {
 				to={`/decks/${params.deckId}`}
 				className='btn btn-secondary mr-2'
 			>
-				{formData.front !== '' || formData.back !== ''
-					? 'Cancel'
-					: 'Done Adding Cards'}
+				Cancel
 			</Link>
 			<DynamicDeckFormButton isSubmitting={isSubmitting} />
 		</form>
