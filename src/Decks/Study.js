@@ -10,16 +10,15 @@ export default function Study() {
 
 	useEffect(() => {
 		const abort = new AbortController();
-		readDeck(params.deckId, abort.signal).then((res) => setDeck(res));
+		readDeck(params.deckId, abort.signal).then(setDeck);
 		return () => abort.abort();
 	}, [params.deckId]);
 
-		if (!deck) return '...loading';
+	if (!deck) return null;
 	const breadcrumbLinks = [
 		{ name: deck.name, address: `/decks/${deck.id}` },
 		{ name: 'Study' },
 	];
-
 
 	return (
 		<>

@@ -27,11 +27,11 @@ export default function Card({ deck }) {
 			setShowBack(false);
 		}
 	};
-	if (!card) return "...loading";
+	if (!deck) return <div />;
 	if (deck.cards.length < 3) {
 		return <NotEnoughCards count={deck.cards.length} />;
 	}
-	return (
+	if (card) return (
 		<div className='card'>
 			<div className='card-body'>
 				<h5 className='card-title'>
@@ -45,14 +45,19 @@ export default function Card({ deck }) {
 				>
 					Flip
 				</button>
-				<button
-					type='button'
-					onClick={handleNextClick}
-					className={`btn btn-primary ${showBack ? '' : 'd-none'}`}
-				>
-					Next
-				</button>
+				{showBack ? (
+					<button
+						type='button'
+						onClick={handleNextClick}
+						className='btn btn-primary'
+					>
+						Next
+					</button>
+				) : (
+					<div />
+				)}
 			</div>
 		</div>
 	);
+	return null;
 }
