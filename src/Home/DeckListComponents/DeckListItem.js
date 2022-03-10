@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDecks } from '../../Hooks/Hooks';
 
 export default function DeckListItem({ deck, handleDelete }) {
 	return (
