@@ -1,26 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Breadcrumbs from '../Common/Breadcrumbs';
-import { deleteCard, deleteDeck, listDecks, readDeck } from '../utils/api/index';
-import NoDeck from '../Common/CannotFindDeck';
+import { deleteCard, deleteDeck, readDeck } from '../utils/api/index';
+import CannotFindDeck from '../Common/CannotFindDeck';
 import DeckCard from './ViewDeckComponents/DeckCard';
 import NoCards from './ViewDeckComponents/NoCards';
 import StudyCardGroup from './ViewDeckComponents/StudyCardGroup';
+import LoadingSpinner from '../Common/LoadingSpinner';
+import EmptyWithMsg from '../Common/EmptyWithMsg';
+import GenericError from '../Common/GenericError';
 
 export default function ViewDeck() {
 	const params = useParams();
 	const history = useHistory();
 	const [deck, setDeck] = useState(null);
-	
+	const [error, setError] = useState(null);
+
 	useEffect(() => {
 		const abort = new AbortController();
-		readDeck(params.deckId, abort.signal).then(setDeck);
+		readDeck(params.deckId, abort.signal).then(setDeck).catch(setError);
 		return () => abort.abort();
 	}, [params.deckId]);
-	
-	if (!deck) return '...loading';
-	if (deck === {}) return <NoDeck />;
+
+	if (!deck && !error) return <LoadingSpinner />;
+
+	if (error) {
+		if (error.message.includes('404')) {
+			return <CannotFindDeck />;
+		} else {
+			return <GenericError msg={'There was an anomaly...'} />;
+		}
+	}
+
 	const breadcrumbLinks = [{ name: deck.name }];
+
 	const handleDeleteDeck = ({ target }) => {
 		const confirm = window.confirm('Are you sure?\nThis is permanent.');
 		if (confirm) {
@@ -31,9 +44,10 @@ export default function ViewDeck() {
 	const handleDeleteCard = (id) => {
 		const confirm = window.confirm('Are you sure?\nThis is permanent.');
 		if (confirm) {
-			deleteCard(id).then(() => readDeck(deck.id).then(setDeck))
+			deleteCard(id).then(() => readDeck(deck.id).then(setDeck));
 		}
 	};
+
 	return (
 		<>
 			<Breadcrumbs links={breadcrumbLinks} />

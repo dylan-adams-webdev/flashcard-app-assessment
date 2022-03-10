@@ -1,6 +1,7 @@
 import NotEnoughCards from '../DeckErrors/NotEnoughCards';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import LoadingSpinner from '../../Common/LoadingSpinner';
 
 export default function Card({ deck }) {
 	const [cardIndex, setCardIndex] = useState(0);
@@ -24,10 +25,11 @@ export default function Card({ deck }) {
 			result ? setCardIndex(0) : history.push('/');
 		} else {
 			setCardIndex(cardIndex + 1);
-			setShowBack(false);
 		}
+		setShowBack(false);
 	};
-	if (!deck) return <div />;
+	
+	if (!deck) return <LoadingSpinner />;
 	if (deck.cards.length < 3) {
 		return <NotEnoughCards count={deck.cards.length} />;
 	}
