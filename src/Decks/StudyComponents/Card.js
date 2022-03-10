@@ -25,31 +25,29 @@ export default function Card({ deck }) {
 			result ? setCardIndex(0) : history.push('/');
 		} else {
 			setCardIndex(cardIndex + 1);
-			setShowBack(false);
 		}
+		setShowBack(false);
 	};
-
+	
+	if (!deck) return <LoadingSpinner />;
 	if (deck.cards.length < 3) {
 		return <NotEnoughCards count={deck.cards.length} />;
 	}
-
-	if (card) {
-		return (
-			<div className='card'>
-				<div className='card-body'>
-					<h5 className='card-title'>
-						Card {cardIndex + 1} of {deck.cards.length}
-					</h5>
-					<p className='card-text'>
-						{showBack ? card.back : card.front}
-					</p>
-					<button
-						type='button'
-						onClick={handleFlipClick}
-						className='btn btn-secondary mr-2'
-					>
-						Flip
-					</button>
+	if (card) return (
+		<div className='card'>
+			<div className='card-body'>
+				<h5 className='card-title'>
+					Card {cardIndex + 1} of {deck.cards.length}
+				</h5>
+				<p className='card-text'>{showBack ? card.back : card.front}</p>
+				<button
+					type='button'
+					onClick={handleFlipClick}
+					className='btn btn-secondary mr-2'
+				>
+					Flip
+				</button>
+				{showBack ? (
 					<button
 						type='button'
 						onClick={handleNextClick}
@@ -57,9 +55,11 @@ export default function Card({ deck }) {
 					>
 						Next
 					</button>
-				</div>
+				) : (
+					<div />
+				)}
 			</div>
-		);
-	}
-	return <LoadingSpinner />;
+		</div>
+	);
+	return null;
 }

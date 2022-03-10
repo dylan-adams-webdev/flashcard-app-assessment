@@ -2,14 +2,11 @@ import React from 'react';
 
 function NotFound() {
 	return (
-		<div className='text-center'>
-			<h1 className='mb-5'>Page Not Found</h1>
-			<img
-				className='img-fluid w-75'
-				src='/img/not-found.svg'
-				alt='page not found'
-			/>
-		</div>
+		<>
+			<span className='sr-only'>Not Found</span>
+			<h1>Page Not Found</h1>
+			<img className='img-fluid w-50' alt='Page not found' src='/img/not-found.svg' />
+		</>
 	);
 }
 

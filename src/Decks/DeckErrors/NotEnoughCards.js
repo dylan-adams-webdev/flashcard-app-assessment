@@ -6,7 +6,7 @@ export default function NotEnoughCards({ count }) {
 	const params = useParams();
 	return (
 		<div>
-			<h2>Not enough cards.</h2>
+			<h2>Not enough cards</h2>
 			<p>
 				You need at least 3 cards to study. There are
 				{count > 0 ? ` only ${count} ` : ' no '}

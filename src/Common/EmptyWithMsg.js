@@ -5,7 +5,7 @@ export default function EmptyWithMsg({ msg }) {
 	return (
 		<>
 			<div>
-				<h1>{msg}</h1>
+				<h1 className='mb-3'>{msg}</h1>
 				<Link to={'/'} className='btn btn-secondary mr-2'>
 					<i className='fa-solid fa-list'></i>&nbsp; List Decks
 				</Link>
