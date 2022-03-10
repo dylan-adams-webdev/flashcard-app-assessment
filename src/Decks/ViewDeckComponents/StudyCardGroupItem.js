@@ -11,7 +11,7 @@ export default function CardGroupItem({
 				<div className='card-body'>
 					<div className='d-flex'>
 						{/* Front of card */}
-						<div className='w-50 text-center'>
+						<div className='w-50 text-center pr-2'>
 							<p>
 								<strong>Front</strong>
 							</p>
@@ -20,7 +20,7 @@ export default function CardGroupItem({
 						</div>
 
 						{/* Back of card */}
-						<div className='w-50 text-center'>
+						<div className='w-50 text-center pl-2'>
 							<p>
 								<strong>Back</strong>
 							</p>

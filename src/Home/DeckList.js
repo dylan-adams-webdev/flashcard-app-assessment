@@ -4,6 +4,7 @@ import { deleteDeck, listDecks } from '../utils/api';
 import AddDeckButton from './DeckListComponents/AddDeckButton';
 import DeckListItem from './DeckListComponents/DeckListItem';
 import { useEffect, useState } from 'react';
+import GenericError from '../Common/GenericError';
 
 export default function DeckList() {
 	const [decks, setDecks] = useState(null);
@@ -27,6 +28,8 @@ export default function DeckList() {
 		return <LoadingSpinner />;
 	} else if (!decks.length) {
 		return <NoDecks />;
+	} else if (error) {
+		return <GenericError msg='There was an anomaly' />
 	} else {
 		const deckListItems = decks.map((deck) => (
 			<DeckListItem
