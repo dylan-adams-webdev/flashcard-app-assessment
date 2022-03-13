@@ -2,6 +2,10 @@
 
 A simple React front end that allows users to study using digital flashcards that the user creates.
 
+### Context
+
+This project was created as a graded project for [Thinkful](https://thinkful.com) to learn React and React-Router. The purpose, besides as a utility to learn the technologies and to assess the ability to construct a web application with multiple screens, is to provide an easy-to-use utility for studying and memorizing information. 
+
 ### Installation
 
 - Fork and clone this repository to your local machine (main branch)
@@ -11,7 +15,7 @@ A simple React front end that allows users to study using digital flashcards tha
 
 ### Technologies
 
-This project was built using React and Bootstrap. The purpose of this project was to use newly acquired React knowledge in a real project. Bootstrap was chosen due to minimize development time to focus on learning React. This project is a fork from the Thinkful repository and was part of a graded project as part of the Software Engineering course.
+This project was built using React (```create-react-app```) and Bootstrap. The purpose of this project was to use newly acquired React knowledge in a real project. Bootstrap was chosen due to minimize development time to focus on learning React.
 
 ### Discoveries
 
